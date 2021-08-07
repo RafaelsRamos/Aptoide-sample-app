@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AptoideSample</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="stores">Stores</string>
+    <string name="apps">Apps</string>
 </resources>
