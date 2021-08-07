@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AptoideSample</string>
+    <string name="home">Casa</string>
+    <string name="search">Pesquisa</string>
+    <string name="stores">Lojas</string>
+    <string name="apps">Apps</string>
+</resources>
