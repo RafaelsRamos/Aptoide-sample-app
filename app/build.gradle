@@ -89,5 +89,7 @@ dependencies {
     //-- Reactivex Docs http://reactivex.io/documentation
     //-- RxJava Doc https://github.com/ReactiveX/RxJava
     def rx_java_version = "3.0.12"
+    def retrofit_rxjava_adapter = "2.9.0"
     implementation "io.reactivex.rxjava3:rxjava:$rx_java_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava3:$retrofit_rxjava_adapter"
 }
