@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home"/>
+    <item
+        android:id="@+id/search"
+        android:enabled="true"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search"/>
+
+    <item
+        android:id="@+id/stores"
+        android:enabled="true"
+        android:icon="@drawable/ic_store"
+        android:title="@string/stores"/>
+
+    <item
+        android:id="@+id/apps"
+        android:enabled="true"
+        android:icon="@drawable/ic_apps"
+        android:title="@string/apps"/>
+</menu>
