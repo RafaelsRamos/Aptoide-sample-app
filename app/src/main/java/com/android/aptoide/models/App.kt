@@ -44,7 +44,7 @@ data class App(
     val rating: Float,
 
     /** Add business description for the respective variable */
-    val size: Int,
+    val size: Long,
 
     /** Add business description for the respective variable */
     val storeId: Int,

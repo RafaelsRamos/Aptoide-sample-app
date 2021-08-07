@@ -42,7 +42,7 @@ data class NetworkApp(
     val rating: Float,
 
     @SerializedName("size")
-    val size: Int,
+    val size: Long,
 
     @SerializedName("store_id")
     val storeId: Int,
