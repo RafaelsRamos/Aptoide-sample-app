@@ -2,6 +2,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:maxWidth="300dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="3dp"
     app:cardCornerRadius="5dp"
@@ -24,14 +25,16 @@
         <TextView
             android:id="@+id/card_app_title"
             style="@style/editor_choice_name_style"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="4dp"
-            app:layout_constraintBottom_toTopOf="@+id/rating_star"
-            app:layout_constraintStart_toStartOf="@id/rating_star"
-            android:maxLines="1"
             android:ellipsize="end"
-            android:visibility="invisible" />
+            android:maxLines="2"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/rating_star"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/rating_star" />
 
         <ImageView
             android:id="@+id/rating_star"

@@ -15,6 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/fragments_base_color"
         tools:context=".ui.fragments.AppDisplayFragment">
 
         <TextView
@@ -22,11 +23,11 @@
             style="@style/section_title_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/editors_choice_title"
-            android:maxLines="1"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="32dp"
             android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/editors_choice_title"
             app:layout_constraintEnd_toStartOf="@+id/editors_choice_more"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,20 +50,22 @@
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:setAppsViewModel="@{viewModel}"
-            app:setAppsLifecycleOwner="@{lifecycleOwner}"
-            app:layout_constraintTop_toBottomOf="@+id/editors_choice_title" />
+            app:editorSetAppsViewModel="@{viewModel}"
+            app:editorSetAppsLifecycleOwner="@{lifecycleOwner}"
+            app:layout_constraintTop_toBottomOf="@+id/editors_choice_title"
+            android:paddingVertical="10dp"
+            android:clipToPadding="false"/>
 
         <TextView
             android:id="@+id/local_top_apps_title"
             style="@style/section_title_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="32dp"
-            android:text="@string/local_top_apps_title"
-            android:maxLines="1"
             android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/local_top_apps_title"
             app:layout_constraintEnd_toStartOf="@+id/local_top_apps_more"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -85,7 +88,9 @@
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/local_top_apps_title" />
+            app:layout_constraintTop_toBottomOf="@+id/local_top_apps_title"
+            app:localTopSetAppsViewModel="@{viewModel}"
+            app:localTopetAppsLifecycleOwner="@{lifecycleOwner}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
