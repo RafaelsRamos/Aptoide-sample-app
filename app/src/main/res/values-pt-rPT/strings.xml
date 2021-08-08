@@ -5,4 +5,8 @@
     <string name="search">Pesquisa</string>
     <string name="stores">Lojas</string>
     <string name="apps">Apps</string>
+
+    <string name="editors_choice_title">Escolha do editor</string>
+    <string name="local_top_apps_title">Melhores apps locais</string>
+    <string name="more">Mais</string>
 </resources>

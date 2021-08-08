@@ -4,4 +4,8 @@
     <string name="search">Search</string>
     <string name="stores">Stores</string>
     <string name="apps">Apps</string>
+
+    <string name="editors_choice_title">Editors choice</string>
+    <string name="local_top_apps_title">Local top apps</string>
+    <string name="more">More</string>
 </resources>
