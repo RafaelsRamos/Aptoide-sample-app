@@ -17,7 +17,7 @@ data class App(
     val downloads: Int,
 
     /** Add business description for the respective variable */
-    val graphic: String,
+    val graphic: String?,
 
     /** Add business description for the respective variable */
     val icon: String,
