@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.android.aptoide.ui.viewmodels.AppDisplayFragmentViewModel" />
+        <variable
+            name="lifecycleOwner"
+            type="androidx.lifecycle.LifecycleOwner" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragments.AppDisplayFragment">
+
+        <TextView
+            android:id="@+id/editors_choice_title"
+            style="@style/section_title_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/editors_choice_title"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintEnd_toStartOf="@+id/editors_choice_more"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/editors_choice_more"
+            style="@style/section_more_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/editors_choice_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/editors_choice_title" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/editors_choice_rv"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/editors_choice_recycler_height"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:setAppsViewModel="@{viewModel}"
+            app:setAppsLifecycleOwner="@{lifecycleOwner}"
+            app:layout_constraintTop_toBottomOf="@+id/editors_choice_title" />
+
+        <TextView
+            android:id="@+id/local_top_apps_title"
+            style="@style/section_title_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/local_top_apps_title"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintEnd_toStartOf="@+id/local_top_apps_more"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editors_choice_rv" />
+
+        <TextView
+            android:id="@+id/local_top_apps_more"
+            style="@style/section_more_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/local_top_apps_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/local_top_apps_title" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/local_top_apps_rv"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/regular_app_display_recycler_height"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/local_top_apps_title" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
