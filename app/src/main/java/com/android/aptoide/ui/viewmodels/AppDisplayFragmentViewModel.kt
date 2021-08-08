@@ -1,5 +1,6 @@
 package com.android.aptoide.ui.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
@@ -22,11 +23,18 @@ class AppDisplayFragmentViewModel
         private val savedStateHandle: SavedStateHandle
     ): ViewModel() {
 
+    companion object {
+        const val TAG = "AppDisplayViewModel"
+    }
+
     private val _dataState: MutableLiveData<DataState<List<App>>> = MutableLiveData()
 
     val dataState: LiveData<DataState<List<App>>> get() = _dataState
 
     fun getAppList() {
+        //TODO ("Remove... Its here for testing purposes")
+        appsListRepository.getAppsListRaw()
+
         appsListRepository.getEntireAppsList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -40,7 +48,7 @@ class AppDisplayFragmentViewModel
         }
 
         override fun onError(e: Throwable?) {
-            println("Error while loading data from API... ${e?.message}")
+            Log.e(TAG, "Error while loading data from API... ${e?.message}")
             _dataState.value = DataState.Error(Exception(e?.message))
             //TODO("Show error dialog")
         }

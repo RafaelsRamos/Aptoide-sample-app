@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -11,6 +12,7 @@ import com.android.aptoide.R
 import com.android.aptoide.databinding.FragmentAppDisplayBinding
 import com.android.aptoide.models.App
 import com.android.aptoide.ui.activities.MainActivity
+import com.android.aptoide.ui.bindingadapters.ISwipableRefresh
 import com.android.aptoide.ui.viewmodels.AppDisplayFragmentViewModel
 import com.android.utils.DataState
 import com.android.utils.hasInternetConnection
@@ -18,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.lang.Exception
 
 @AndroidEntryPoint
-class AppDisplayFragment: Fragment() {
+class AppDisplayFragment: Fragment(), ISwipableRefresh {
 
     private lateinit var binding: FragmentAppDisplayBinding
     private val viewModel: AppDisplayFragmentViewModel by viewModels()
@@ -41,18 +43,12 @@ class AppDisplayFragment: Fragment() {
 
         viewModel.dataState.observe(viewLifecycleOwner, { dataState ->
             when (dataState) {
-                is DataState.Success<List<App>> -> {
-                    //TODO ("Hide progress bar")
-                    mainActivity.changeProgressBarState(false)
-                }
-                is DataState.Error -> {
-                    //TODO ("Hide progress bar")
-                    mainActivity.changeProgressBarState(false)
-                }
-                is DataState.Loading -> {
-                    mainActivity.changeProgressBarState(true)
-                }
+                is DataState.Success<List<App>> -> mainActivity.changeProgressBarState(false)
+                is DataState.Error -> mainActivity.changeProgressBarState(false)
+                is DataState.Loading -> mainActivity.changeProgressBarState(true)
             }
+            Toast.makeText(context, "Data updated...", Toast.LENGTH_SHORT).show()
+            mainActivity.resetSwipe()
         })
 
         if (hasInternetConnection()) {
@@ -62,10 +58,18 @@ class AppDisplayFragment: Fragment() {
 
     override fun onResume() {
         super.onResume()
+        updateData()
+    }
+
+    private fun updateData() {
         try {
             viewModel.getAppList()
         } catch (e: Exception) {
             println(e.stackTrace)
         }
+    }
+
+    override fun onSwiped() {
+        updateData()
     }
 }

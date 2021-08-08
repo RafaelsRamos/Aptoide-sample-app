@@ -57,5 +57,5 @@ class AppNetworkMapper
         )
     }
 
-    fun mapFromEntityList(entities: List<NetworkApp>) = entities.map { mapFromEntity(it) }
+    fun mapFromEntityList(entities: Array<NetworkApp>) = entities.map { mapFromEntity(it) }
 }
