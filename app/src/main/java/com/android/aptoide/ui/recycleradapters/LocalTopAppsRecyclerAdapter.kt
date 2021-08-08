@@ -17,36 +17,36 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import dagger.hilt.android.qualifiers.ApplicationContext
 
-class EditorChoiceRecyclerAdapter(
+class LocalTopAppsRecyclerAdapter(
     @ApplicationContext context: Context,
     posts: MutableList<App>
-): LiveRecyclerViewAdapter<App, EditorChoiceRecyclerAdapter.ViewHolder>(context, posts) {
+): LiveRecyclerViewAdapter<App, LocalTopAppsRecyclerAdapter.ViewHolder>(context, posts) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view: View = inflater.inflate(R.layout.item_editor_choice_card, parent, false)
+        val view: View = inflater.inflate(R.layout.item_local_top_apps_card, parent, false)
         return ViewHolder(view)
     }
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), IBindableViewHolder<App>, RequestListener<Drawable> {
-        private val backgroundImageView: ImageView = itemView.findViewById(R.id.card_background)
-        private val title: TextView = itemView.findViewById(R.id.card_app_title)
-        private val stars: TextView = itemView.findViewById(R.id.card_app_stars)
+    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), IBindableViewHolder<App>,
+        RequestListener<Drawable> {
+        private val iconImageView: ImageView = itemView.findViewById(R.id.icon_iv)
+        private val appName: TextView = itemView.findViewById(R.id.app_name)
+        private val rating: TextView = itemView.findViewById(R.id.card_app_stars)
 
         private val progressBar: ProgressBar = itemView.findViewById(R.id.progress_bar)
 
         override fun bind(value: App) {
-            value.graphic?.run {
+            value.icon.run {
                 //TODO("Add glide signature...")
                 Glide
-                    .with(backgroundImageView.context)
+                    .with(iconImageView.context)
                     .load(this)
                     .centerCrop()
                     .timeout(3000)
                     .listener(this@ViewHolder)
-                    .into(backgroundImageView)
+                    .into(iconImageView)
             }
-            title.text = value.name
-            stars.text = if (value.rating > 0.0) value.rating.toString() else "--"
-
+            appName.text = value.name
+            rating.text = if (value.rating > 0.0) value.rating.toString() else "--"
         }
 
         override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
@@ -61,8 +61,8 @@ class EditorChoiceRecyclerAdapter(
 
         private fun onImageLoadFinish() {
             progressBar.visibility = View.GONE
-            title.visibility = View.VISIBLE
-            stars.visibility = View.VISIBLE
+            appName.visibility = View.VISIBLE
+            rating.visibility = View.VISIBLE
         }
     }
 }
