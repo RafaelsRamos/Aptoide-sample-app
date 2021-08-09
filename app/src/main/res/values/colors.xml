@@ -13,4 +13,7 @@
     <color name="dark_orange">#ff4e2b</color>
     <color name="medium_orange">#ff8426</color>
     <color name="card_background">#FFFFFF</color>
+
+    <color name="individual_progress_bar_start_color">#47474700</color>
+    <color name="individual_progress_bar_end_color">#474747</color>
 </resources>
