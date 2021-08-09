@@ -13,7 +13,7 @@ import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-private val BASE_URL = "https://ws2.aptoide.com/api/6/bulkRequest/api_list/"
+private const val BASE_URL = "https://ws2.aptoide.com/api/6/bulkRequest/api_list/"
 
 @Module
 @InstallIn(SingletonComponent::class)

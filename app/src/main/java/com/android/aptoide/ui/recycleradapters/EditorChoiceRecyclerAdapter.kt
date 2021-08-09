@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.aptoide.R
 import com.android.aptoide.models.App
+import com.android.utils.SERVICE_TIMEOUT_DURATION
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -39,7 +40,7 @@ class EditorChoiceRecyclerAdapter(
                     .with(backgroundImageView.context)
                     .load(this)
                     .centerCrop()
-                    .timeout(3000)
+                    .timeout(SERVICE_TIMEOUT_DURATION)
                     .listener(this@ViewHolder)
                     .into(backgroundImageView)
             }

@@ -4,20 +4,11 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class SpacesItemDecoration: RecyclerView.ItemDecoration {
+class SpacesItemDecoration(top: Int, bottom: Int, start: Int, end: Int) : RecyclerView.ItemDecoration() {
 
     private val rect = Rect()
 
-    constructor(space: Int) {
-        rect.run {
-            top = space
-            bottom = space
-            left = space
-            right = space
-        }
-    }
-
-    constructor(top: Int, bottom: Int, start: Int, end: Int) {
+    init {
         rect.run {
             this.top = top
             this.bottom = bottom

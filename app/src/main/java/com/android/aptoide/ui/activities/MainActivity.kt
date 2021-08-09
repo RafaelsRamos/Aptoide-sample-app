@@ -18,6 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.plugins.RxJavaPlugins
 import javax.inject.Inject
 
+private const val TAG = "MainActivity"
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         setBottomNavigation(binding.bottomNavigation)
 
-        RxJavaPlugins.setErrorHandler { Log.e("MainActivity", "Error ${it.message}") }
+        RxJavaPlugins.setErrorHandler { Log.e(TAG, "Error ${it.message}") }
 
         // Set on swipe down behaviour
         setOnSwipeBehaviour()
@@ -95,7 +96,7 @@ class MainActivity : AppCompatActivity() {
         binding.noInternetLl.visibility = if (hasInternetConnection) GONE else VISIBLE
     }
 
-    // For development purposes
+    // For development/sample viewing purposes
     private fun showToast(msg: String): Boolean {
         Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
         return true

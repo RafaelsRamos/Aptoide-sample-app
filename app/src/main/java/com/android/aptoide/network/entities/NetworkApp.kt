@@ -3,6 +3,9 @@ package com.android.aptoide.network.entities
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
+/**
+ * Network Entity class for the [App] domain model
+ */
 data class NetworkApp(
 
     @SerializedName("added")

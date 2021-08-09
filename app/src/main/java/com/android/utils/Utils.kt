@@ -16,6 +16,8 @@ import androidx.core.content.ContextCompat
 
 const val DATE_FORMAT_PATTERN = "yyyy-MM-dd HH:mm:ss"
 
+const val SERVICE_TIMEOUT_DURATION = 5000
+
 /**
  * Set a gradient to the activity's [Window] background, allowing for a smooth
  * status bar + action bar transition

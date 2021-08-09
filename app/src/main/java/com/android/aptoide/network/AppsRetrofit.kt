@@ -13,6 +13,7 @@ interface AppsRetrofit {
     @GET("listApps")
     fun getAppsList(): Flowable<NetworkResult>
 
+    //TODO("Remove")
     @GET("listApps")
     fun getAppsListRaw(): Flowable<ResponseBody>
 
