@@ -29,7 +29,7 @@ fun setStatusBarDrawable(activity: Activity, @DrawableRes drawableRes: Int ) {
  */
 fun hasInternetConnection(): Boolean {
     return try {
-        InetAddress.getByName("google.com").equals("")
+        !InetAddress.getByName("google.com").equals("")
     } catch (e: Exception) {
         false
     }

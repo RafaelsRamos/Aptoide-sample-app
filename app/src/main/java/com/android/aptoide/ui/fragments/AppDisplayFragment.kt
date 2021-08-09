@@ -41,6 +41,7 @@ class AppDisplayFragment: Fragment(), ISwipableRefresh {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         viewModel.dataState.observe(viewLifecycleOwner, { dataState ->
             when (dataState) {
                 is DataState.Success<List<App>> -> mainActivity.changeProgressBarState(false)
@@ -50,26 +51,24 @@ class AppDisplayFragment: Fragment(), ISwipableRefresh {
             Toast.makeText(context, "Data updated...", Toast.LENGTH_SHORT).show()
             mainActivity.resetSwipe()
         })
-
-        if (hasInternetConnection()) {
-            //TODO ("Understand why this is not working")
-        }
     }
 
     override fun onResume() {
         super.onResume()
-        updateData()
+        tryUpdateData()
     }
 
-    private fun updateData() {
+    private fun tryUpdateData() {
         try {
-            viewModel.getAppList()
+            if (hasInternetConnection()) {
+                viewModel.getAppList()
+            }
         } catch (e: Exception) {
             println(e.stackTrace)
         }
     }
 
     override fun onSwiped() {
-        updateData()
+        tryUpdateData()
     }
 }
