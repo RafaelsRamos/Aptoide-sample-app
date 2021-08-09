@@ -3,6 +3,8 @@ package com.android.aptoide.ui.activities
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
@@ -10,6 +12,7 @@ import com.android.aptoide.R
 import com.android.aptoide.databinding.ActivityMainBinding
 import com.android.aptoide.network.repos.AppsListRepository
 import com.android.aptoide.ui.bindingadapters.ISwipableRefresh
+import com.android.utils.isNetworkAvailable
 import com.android.utils.setStatusBarDrawable
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,7 +28,9 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var repo: AppsListRepository
 
-    val navHostFragment get() = supportFragmentManager.fragments.firstOrNull { it is NavHostFragment }
+    private val navHostFragment get() = supportFragmentManager.fragments.firstOrNull { it is NavHostFragment }
+
+    private val hasInternetConnection get() = isNetworkAvailable(baseContext)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,10 +47,14 @@ class MainActivity : AppCompatActivity() {
 
         // Set on swipe down behaviour
         setOnSwipeBehaviour()
+
+        // Assess internet connection
+        updateInternetStatus()
     }
 
     private fun setOnSwipeBehaviour() {
         binding.swipeRefreshLayout.setOnRefreshListener {
+            updateInternetStatus()
             navHostFragment?.let {
                 // Run through fragments in stack and want them the SwipeRefreshLayout was swiped
                 for (frag in it.childFragmentManager.fragments) {
@@ -82,10 +91,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun changeProgressBarState(enable: Boolean) {
-        binding.progressBar.visibility = if (enable) View.VISIBLE else View.GONE
+        binding.progressBar.visibility = if (enable) VISIBLE else GONE
     }
 
     fun resetSwipe() {
         binding.swipeRefreshLayout.isRefreshing = false
+    }
+
+    private fun updateInternetStatus() {
+        binding.noInternetLl.visibility = if (hasInternetConnection) GONE else VISIBLE
     }
 }

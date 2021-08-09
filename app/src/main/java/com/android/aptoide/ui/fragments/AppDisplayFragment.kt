@@ -3,6 +3,8 @@ package com.android.aptoide.ui.fragments
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -15,7 +17,7 @@ import com.android.aptoide.ui.activities.MainActivity
 import com.android.aptoide.ui.bindingadapters.ISwipableRefresh
 import com.android.aptoide.ui.viewmodels.AppDisplayFragmentViewModel
 import com.android.utils.DataState
-import com.android.utils.hasInternetConnection
+import com.android.utils.isNetworkAvailable
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.Exception
 
@@ -31,6 +33,8 @@ class AppDisplayFragment: Fragment(), ISwipableRefresh {
     // project's activities
     private val mainActivity get() = activity as MainActivity
 
+    private val hasInternetConnection get() = isNetworkAvailable(requireContext())
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_app_display, container, false)
         binding.viewModel = viewModel
@@ -40,7 +44,6 @@ class AppDisplayFragment: Fragment(), ISwipableRefresh {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         viewModel.dataState.observe(viewLifecycleOwner, { dataState ->
             when (dataState) {
@@ -60,9 +63,17 @@ class AppDisplayFragment: Fragment(), ISwipableRefresh {
 
     private fun tryUpdateData() {
         try {
-            if (hasInternetConnection()) {
+
+            // At this point our context is always valid
+            if (hasInternetConnection) {
                 viewModel.getAppList()
+            } else {
+                mainActivity.resetSwipe()
             }
+
+            // If there is no internet connection, hide root view
+            binding.root.visibility = if (hasInternetConnection) VISIBLE else GONE
+
         } catch (e: Exception) {
             println(e.stackTrace)
         }

@@ -32,6 +32,10 @@ class AppDisplayFragmentViewModel
     val dataState: LiveData<DataState<List<App>>> get() = _dataState
 
     fun getAppList() {
+
+        // Trigger progress bar
+        _dataState.value = DataState.Loading
+
         //TODO ("Remove... Its here for testing purposes")
         appsListRepository.getAppsListRaw()
 

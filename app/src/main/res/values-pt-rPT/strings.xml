@@ -9,4 +9,5 @@
     <string name="editors_choice_title">Escolha do editor</string>
     <string name="local_top_apps_title">Melhores apps locais</string>
     <string name="more">Mais</string>
+    <string name="no_internet_connection">Sem internet/nActive-a e tente de novo…</string>
 </resources>

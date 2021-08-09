@@ -48,4 +48,11 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="no_internet_connection_style">
+        <item name="android:textSize">25sp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

@@ -8,4 +8,6 @@
     <string name="editors_choice_title">Editors choice</string>
     <string name="local_top_apps_title">Local top apps</string>
     <string name="more">More</string>
+
+    <string name="no_internet_connection">No Internet connection \n Enable it and try again…</string>
 </resources>
