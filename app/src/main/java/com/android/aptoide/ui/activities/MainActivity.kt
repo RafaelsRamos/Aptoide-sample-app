@@ -2,7 +2,6 @@ package com.android.aptoide.ui.activities
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Toast
@@ -50,6 +49,9 @@ class MainActivity : AppCompatActivity() {
 
         // Assess internet connection
         updateInternetStatus()
+
+        // Set click listeners
+        binding.profileIv.setOnClickListener { showToast("Pressed profile") }
     }
 
     private fun setOnSwipeBehaviour() {
@@ -69,22 +71,10 @@ class MainActivity : AppCompatActivity() {
     private fun setBottomNavigation(bnView: BottomNavigationView) {
         bnView.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.home -> {
-                    Toast.makeText(baseContext, "Pressed home", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.search -> {
-                    Toast.makeText(baseContext, "Pressed search", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.stores -> {
-                    Toast.makeText(baseContext, "Pressed stores", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.apps -> {
-                    Toast.makeText(baseContext, "Pressed apps", Toast.LENGTH_SHORT).show()
-                    true
-                }
+                R.id.home -> showToast("Pressed home")
+                R.id.search -> showToast("Pressed search")
+                R.id.stores -> showToast("Pressed stores")
+                R.id.apps -> showToast("Pressed apps")
                 else -> false
             }
         }
@@ -98,7 +88,16 @@ class MainActivity : AppCompatActivity() {
         binding.swipeRefreshLayout.isRefreshing = false
     }
 
+    /**
+     * Show or Hide no internet connection layout
+     */
     private fun updateInternetStatus() {
         binding.noInternetLl.visibility = if (hasInternetConnection) GONE else VISIBLE
+    }
+
+    // For development purposes
+    private fun showToast(msg: String): Boolean {
+        Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+        return true
     }
 }

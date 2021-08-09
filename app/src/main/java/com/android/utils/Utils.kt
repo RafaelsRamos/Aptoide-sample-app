@@ -1,6 +1,7 @@
 package com.android.utils
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Color
 import android.net.ConnectivityManager
@@ -45,4 +46,13 @@ fun isNetworkAvailable(context: Context): Boolean {
         }
     }
     return false
+}
+
+fun createSimpleDialog(ctx: Context, title: String, message: String, btnMessage: String = "Continue") {
+    with (AlertDialog.Builder(ctx).create()) {
+        setTitle(title)
+        setMessage(message)
+        setButton(AlertDialog.BUTTON_NEUTRAL, btnMessage) { dialog, _ -> dialog.dismiss() }
+        show()
+    }
 }

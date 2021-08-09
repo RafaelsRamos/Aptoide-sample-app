@@ -22,7 +22,8 @@ fun fillEditorChoiceApps(rv: RecyclerView, viewModel: AppDisplayFragmentViewMode
     }
 
     observeChange(viewModel.dataState, lifecycleOwner) { data ->
-        (rv.adapter as EditorChoiceRecyclerAdapter).updateItems(data)
+        // Remove apps that don't have a valid graphic url
+        (rv.adapter as EditorChoiceRecyclerAdapter).updateItems(data.filter { it.graphic != null })
     }
 }
 

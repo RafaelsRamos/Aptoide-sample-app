@@ -54,7 +54,6 @@ class AppDisplayFragmentViewModel
         override fun onError(e: Throwable?) {
             Log.e(TAG, "Error while loading data from API... ${e?.message}")
             _dataState.value = DataState.Error(Exception(e?.message))
-            //TODO("Show error dialog")
         }
 
         override fun onComplete() {

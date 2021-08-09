@@ -35,7 +35,6 @@ class EditorChoiceRecyclerAdapter(
 
         override fun bind(value: App) {
             value.graphic?.run {
-                //TODO("Add glide signature...")
                 Glide
                     .with(backgroundImageView.context)
                     .load(this)

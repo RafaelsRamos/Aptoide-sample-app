@@ -36,7 +36,6 @@ class LocalTopAppsRecyclerAdapter(
 
         override fun bind(value: App) {
             value.icon.run {
-                //TODO("Add glide signature...")
                 Glide
                     .with(iconImageView.context)
                     .load(this)

@@ -17,6 +17,7 @@ import com.android.aptoide.ui.activities.MainActivity
 import com.android.aptoide.ui.bindingadapters.ISwipableRefresh
 import com.android.aptoide.ui.viewmodels.AppDisplayFragmentViewModel
 import com.android.utils.DataState
+import com.android.utils.createSimpleDialog
 import com.android.utils.isNetworkAvailable
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.Exception
@@ -47,11 +48,17 @@ class AppDisplayFragment: Fragment(), ISwipableRefresh {
 
         viewModel.dataState.observe(viewLifecycleOwner, { dataState ->
             when (dataState) {
-                is DataState.Success<List<App>> -> mainActivity.changeProgressBarState(false)
-                is DataState.Error -> mainActivity.changeProgressBarState(false)
+                is DataState.Success<List<App>> -> {
+                    Toast.makeText(context, "Data updated...", Toast.LENGTH_SHORT).show()
+                    mainActivity.changeProgressBarState(false)
+                }
+                is DataState.Error -> {
+                    showDataLoadErrorAlert()
+                    mainActivity.changeProgressBarState(false)
+                }
                 is DataState.Loading -> mainActivity.changeProgressBarState(true)
             }
-            Toast.makeText(context, "Data updated...", Toast.LENGTH_SHORT).show()
+
             mainActivity.resetSwipe()
         })
     }
@@ -81,5 +88,15 @@ class AppDisplayFragment: Fragment(), ISwipableRefresh {
 
     override fun onSwiped() {
         tryUpdateData()
+    }
+
+    private fun showDataLoadErrorAlert() {
+        context?.let { validContext ->
+            createSimpleDialog(
+                    validContext,
+                    "Unable to fetch data",
+                    "We're sorry, but we were unable to fetch the data for you."
+            )
+        }
     }
 }
