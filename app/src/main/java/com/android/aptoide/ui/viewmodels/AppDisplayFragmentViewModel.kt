@@ -36,9 +36,6 @@ class AppDisplayFragmentViewModel
         // Trigger progress bar
         _dataState.value = DataState.Loading
 
-        //TODO ("Remove... Its here for testing purposes")
-        appsListRepository.getAppsListRaw()
-
         appsListRepository.getEntireAppsList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -45,17 +45,4 @@ constructor(
         }
     }
 
-    fun getAppsListRaw() {
-        appsRetrofit.getAppsListRaw()
-            .toObservable()
-            .subscribeOn(Schedulers.io())
-            .retry(2)
-            .doOnError { Log.e(TAG, it.stackTraceToString()) }
-            .subscribe {
-
-                println("|||| My response raw ${it.string()}")
-
-            }
-    }
-
 }
