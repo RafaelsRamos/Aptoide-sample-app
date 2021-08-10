@@ -48,6 +48,9 @@ class MainActivity : AppCompatActivity() {
         // Set on swipe down behaviour
         setOnSwipeBehaviour()
 
+        // Enable progress bar by default
+        changeProgressBarState(true)
+
         // Assess internet connection
         updateInternetStatus()
 
@@ -93,7 +96,12 @@ class MainActivity : AppCompatActivity() {
      * Show or Hide no internet connection layout
      */
     private fun updateInternetStatus() {
-        binding.noInternetLl.visibility = if (hasInternetConnection) GONE else VISIBLE
+        if (hasInternetConnection) {
+            binding.noInternetLl.visibility = GONE
+        } else {
+            binding.noInternetLl.visibility = VISIBLE
+            changeProgressBarState(false)
+        }
     }
 
     // For development/sample viewing purposes

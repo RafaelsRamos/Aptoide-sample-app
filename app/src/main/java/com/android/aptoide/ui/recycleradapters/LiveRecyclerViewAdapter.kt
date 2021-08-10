@@ -23,8 +23,10 @@ abstract class LiveRecyclerViewAdapter<T, VH>(@ApplicationContext context: Conte
         addItems(newItems)
     }
 
-    fun addItems(newItems: List<T>) {
+    private fun addItems(newItems: List<T>) {
         data.addAll(newItems)
-        notifyDataSetChanged()
+        // Using notifyItemRangeChanged instead of notifyDataSetChanged() to
+        // reinforce visually that the data is actually being updated
+        notifyItemRangeChanged(0, newItems.size)
     }
 }

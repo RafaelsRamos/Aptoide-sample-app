@@ -56,7 +56,10 @@ class AppDisplayFragment: Fragment(), ISwipableRefresh {
                     showDataLoadErrorAlert()
                     mainActivity.changeProgressBarState(false)
                 }
-                is DataState.Loading -> mainActivity.changeProgressBarState(true)
+                is DataState.Loading -> {
+                    // For this sample do nothing
+                    // Ideally, we would display a progress bar (only if we didn't get here by swiping)
+                }
             }
 
             mainActivity.resetSwipe()
