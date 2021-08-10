@@ -7,7 +7,7 @@
     <dimen name="progress_bar_size">80dp</dimen>
     <dimen name="individual_progress_bar_size">25dp</dimen>
 
-    <dimen name="editors_choice_recycler_height">250dp</dimen>
+    <dimen name="editors_choice_recycler_height">210dp</dimen>
     <dimen name="editors_choice_recycler_item_width">350dp</dimen>
     <dimen name="regular_app_display_recycler_height">210dp</dimen>
 

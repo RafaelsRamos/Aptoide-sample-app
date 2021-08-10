@@ -13,7 +13,9 @@ import com.android.aptoide.models.App
 import com.android.utils.SERVICE_TIMEOUT_DURATION
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -37,12 +39,15 @@ class EditorChoiceRecyclerAdapter(
         override fun bind(value: App) {
             value.graphic?.run {
                 Glide
-                    .with(backgroundImageView.context)
-                    .load(this)
-                    .centerCrop()
-                    .timeout(SERVICE_TIMEOUT_DURATION)
-                    .listener(this@ViewHolder)
-                    .into(backgroundImageView)
+                        .with(backgroundImageView.context)
+                        .load(this)
+                        .centerCrop()
+                        .timeout(SERVICE_TIMEOUT_DURATION)
+                        .transition(DrawableTransitionOptions.withCrossFade())
+                        .error(R.drawable.aptoide_logo)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .listener(this@ViewHolder)
+                        .into(backgroundImageView)
             }
             title.text = value.name
             stars.text = if (value.rating > 0.0) value.rating.toString() else "--"

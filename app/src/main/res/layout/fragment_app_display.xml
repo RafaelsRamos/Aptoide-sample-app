@@ -54,7 +54,10 @@
             app:editorSetAppsLifecycleOwner="@{lifecycleOwner}"
             app:layout_constraintTop_toBottomOf="@+id/editors_choice_title"
             android:paddingVertical="10dp"
-            android:clipToPadding="false"/>
+            android:clipToPadding="false"
+            tools:listitem="@layout/item_editor_choice_card"
+            tools:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
         <TextView
             android:id="@+id/local_top_apps_title"
@@ -69,7 +72,7 @@
             app:layout_constraintEnd_toStartOf="@+id/local_top_apps_more"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editors_choice_rv" />
+            app:layout_constraintTop_toBottomOf="@+id/editors_choice_rv"/>
 
         <TextView
             android:id="@+id/local_top_apps_more"
@@ -90,7 +93,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/local_top_apps_title"
             app:localTopSetAppsViewModel="@{viewModel}"
-            app:localTopetAppsLifecycleOwner="@{lifecycleOwner}"/>
+            app:localTopetAppsLifecycleOwner="@{lifecycleOwner}"
+            tools:listitem="@layout/item_local_top_apps_card"
+            tools:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
